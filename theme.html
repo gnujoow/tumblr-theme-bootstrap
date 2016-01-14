@@ -156,6 +156,12 @@
       .like-reblog li {
       float: right;
       }
+
+      .hashTag{
+        font-color:red;
+        font-style: bold;
+
+      }
     </style>
 
   </head>
@@ -183,6 +189,7 @@
       <div class="col-sm-8 blog-main">
         {block:Posts}
         <!-- text -->
+
         {block:Text}
           <div class="panel panel-primary blog-post">
             {block:Title}
@@ -198,6 +205,15 @@
               {Body}
             </div>
             <div class="list-group">
+              <li class="list-group-item">
+                {block:Tags}
+                  <div class="hashTag">
+                    <a href="{TagURL} ">
+                      #{Tag}
+                    </a>
+                  </div>
+                {/block:Tags} 
+              </li>
               <li class="list-group-item">
                 <ul class="like-reblog">
                   <li>{LikeButton}</li>
