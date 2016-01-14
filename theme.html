@@ -170,8 +170,9 @@
       <div class="container">
         <nav class="blog-nav">
           &nbsp
+          <a class="blog-nav-item" href="/">blog</a>
           {block:HasPages}
-            {block:Pages}<a class="blog-nav-item active" href="{URL}">{Label}</a>{/block:Pages}
+            {block:Pages}<a class="blog-nav-item" href="{URL}">{Label}</a>{/block:Pages}
           {/block:HasPages}
         </nav>
       </div>
@@ -205,15 +206,15 @@
               {Body}
             </div>
             <div class="list-group">
-              <li class="list-group-item">
-                {block:Tags}
+              {block:Tags}
+                <li class="list-group-item">
                   <div class="hashTag">
-                    <a href="{TagURL} ">
+                    <a href="{TagURL}">
                       #{Tag}
                     </a>
                   </div>
-                {/block:Tags} 
-              </li>
+                </li>
+              {/block:Tags}   
               <li class="list-group-item">
                 <ul class="like-reblog">
                   <li>{LikeButton}</li>
