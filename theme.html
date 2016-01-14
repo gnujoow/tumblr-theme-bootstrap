@@ -1,0 +1,330 @@
+<html>
+  <head>
+    <title>{Title}</title>
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+    {block:Description}
+    <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+      body {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      color: #555
+      }
+      h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
+      margin-top: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: normal;
+      color: #333
+      }
+      @media (min-width: 1200px) {
+      .container {
+      width: 970px
+      }
+      }
+      .blog-masthead {
+      background-color: #428bca;
+      -webkit-box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1);
+      box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .1)
+      }
+      .blog-nav-item {
+      position: relative;
+      display: inline-block;
+      padding: 10px;
+      font-weight: 500;
+      color: #cdddeb
+      }
+      .blog-nav-item:hover,
+      .blog-nav-item:focus {
+      color: #fff;
+      text-decoration: none
+      }
+      .blog-nav .active {
+      color: #fff
+      }
+      .blog-nav .active:after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      margin-left: -5px;
+      vertical-align: middle;
+      content: " ";
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid;
+      border-left: 5px solid transparent
+      }
+      .blog-header {
+      padding-top: 20px;
+      padding-bottom: 20px
+      }
+      .blog-title {
+      margin-top: 30px;
+      margin-bottom: 0;
+      font-size: 60px;
+      font-weight: normal
+      }
+      .blog-description {
+      font-size: 20px;
+      color: #999
+      }
+      .blog-main {
+      font-size: 18px;
+      line-height: 1.5
+      }
+      .sidebar-module {
+      padding: 15px;
+      margin: 0 -15px 15px
+      }
+      .sidebar-module-inset {
+      padding: 15px;
+      background-color: #f5f5f5;
+      border-radius: 4px
+      }
+      .sidebar-module-inset p:last-child,
+      .sidebar-module-inset ul:last-child,
+      .sidebar-module-inset ol:last-child {
+      margin-bottom: 0
+      }
+      .pager {
+      margin-bottom: 60px;
+      text-align: left
+      }
+      .pager>li>a {
+      width: 140px;
+      padding: 10px 20px;
+      text-align: center;
+      border-radius: 30px
+      }
+      .blog-post {
+      margin-bottom: 60px
+      }
+      .blog-post-title {
+      margin-bottom: 5px;
+      font-size: 40px
+      }
+      .blog-post-meta {
+      margin-bottom: 20px;
+      color: #999
+      }
+      .blog-footer {
+      padding: 40px 0;
+      color: #999;
+      text-align: center;
+      background-color: #f9f9f9;
+      border-top: 1px solid #e5e5e5
+      }
+      .blog-footer p:last-child {
+      margin-bottom: 0
+      }
+      .bs-callout {
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #eee;
+      border-left-width: 5px;
+      border-radius: 3px;
+      }
+      .bs-callout-primary {
+      border-left-color: #428bca;
+      }
+      .bs-callout-primary h4 {
+      color: #428bca;
+      }
+      .bs-callout-success {
+      border-left-color: #5cb85c;
+      }
+      .bs-callout-success h4 {
+      color: #5cb85c;
+      }
+      .bs-callout-warning {
+      border-left-color: #f0ad4e;
+      }
+      .bs-callout-warning h4 {
+      color: #f0ad4e;
+      }
+      .bs-callout-default {
+      border-left-color: #777;
+      }
+      .bs-callout-default h4 {
+      color: #777;
+      }
+      .like-reblog {
+      list-style: none;
+      }
+      .like-reblog li {
+      float: right;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          &nbsp
+          {block:HasPages}
+            {block:Pages}<a class="blog-nav-item active" href="{URL}">{Label}</a>{/block:Pages}
+          {/block:HasPages}
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+    <div class="blog-header">
+      <h1 class="blog-title">{Title}</h1>
+      {block:Description}
+      <p class="lead blog-description">{Description}</p>
+      {/block:Description}
+    </div>
+
+    <div class="row">
+      <!-- post -->
+      <div class="col-sm-8 blog-main">
+        {block:Posts}
+        <!-- text -->
+        {block:Text}
+          <div class="panel panel-primary blog-post">
+            {block:Title}
+            <div class="panel-heading">
+              <h2 class="blog-post-title panel-title">
+                <a href="{Permalink}">
+                {Title}
+                </a>
+              </h2>
+            </div>
+            {/block:Title}
+            <div class="panel-body">
+              {Body}
+            </div>
+            <div class="list-group">
+              <li class="list-group-item">
+                <ul class="like-reblog">
+                  <li>{LikeButton}</li>
+                  <li>{ReblogButton}</li>
+                </ul>
+              </li>
+            </div>
+          </div> 
+        {/block:Text}<!-- /.text -->
+          <!-- photo -->
+          {block:Photo}
+          <div class="panel panel-success blog-post">
+            <img src="{PhotoURL-500}">
+            {block:Caption}
+            <div class="panel-body">
+              {Caption}
+            </div>
+            {/block:Caption}
+            <div class="list-group">
+              <li class="list-group-item">
+                <ul class="like-reblog">
+                  <li>{LikeButton}</li>
+                  <li>{ReblogButton}</li>
+                </ul>
+              </li>
+            </div>
+          </div>
+          {/block:Photo}<!-- /.photo -->
+          <!-- Quote -->
+          {block:Quote}
+          <div class="bs-callout bs-callout-primary blog-post">
+            <h4>{Quote}</h4>
+            {block:Source}<br>&mdash;{Source}{/block:Source}
+            <ul class="like-reblog">
+              <li>{LikeButton}</li>
+              <li>{ReblogButton}</li>
+            </ul>
+          </div>
+          {/block:Quote}<!-- /.Quote -->
+          <!-- Link -->
+          {block:Link}
+          <div class="bs-callout bs-callout-success blog-post">
+            <a href="{URL}" {Target}>
+            {block:Thumbnail}
+            <img src="{Thumbnail}" />
+            {/block:Thumbnail}  
+            {Name}
+            </a>
+            {block:Description}
+            {Description}
+            {/block:Description}
+            <ul class="like-reblog">
+              <li>{LikeButton}</li>
+              <li>{ReblogButton}</li>
+            </ul>
+          </div>
+          {/block:Link}
+          <!-- /.Link -->
+          <!-- Chat -->
+          {block:Chat}
+          <div class="panel panel-warning blog-post">
+            {block:Title}
+            <div class="panel-heading">
+              <h2 class="panel-title">{Title}</h2>
+            </div>
+            {/block:Title}
+            <table class="table">
+              {block:Lines}
+              <tr>
+                <th>{block:Label}{Label}{/block:Label}</th>
+                <td>{Line}</td>
+              </tr>
+              {/block:Lines}
+            </table>
+            <div class="list-group">
+              <li class="list-group-item">
+                <ul class="like-reblog">
+                  <li>{LikeButton}</li>
+                  <li>{ReblogButton}</li>
+                </ul>
+              </li>
+            </div>
+          </div>
+          {/block:Chat}<!-- /.Chat-->
+          <!-- Audio -->
+          {block:Audio}
+          <div class="bs-callout bs-callout-warning blog-post">
+            {AudioPlayer}
+            {block:Caption}{Caption}{/block:Caption}
+            <ul class="like-reblog">
+              <li>{LikeButton}</li>
+              <li>{ReblogButton}</li>
+            </ul>
+          </div>
+          {/block:Audio}<!-- /.Audio -->
+          <!-- Video -->
+          {block:Video}
+          <div class="bs-callout bs-callout-default blog-post">
+            {Video-500}
+            {block:Caption}{Caption}{/block:Caption}
+            <ul class="like-reblog">
+              <li>{LikeButton}</li>
+              <li>{ReblogButton}</li>
+            </ul>
+          </div>
+          {/block:Video}<!-- /.Video -->
+          {/block:Posts}
+        </div>
+
+        <!-- /.blog-main -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <img src="{PortraitURL-128}" />
+            <p>asdf</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archive</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+            </ol>
+          </div>
+        </div>
+        <!-- /.blog-sidebar-->
+      </div>
+      <!-- /. row -->
+    </div>
+    <!-- /.container -->
+  </body>
+</html>
