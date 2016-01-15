@@ -78,8 +78,8 @@
           left: 250px;
         }
         #wrapper.active #sidebar-wrapper {
-          left: 250px;
-          width: 250px;
+          left: 255px;
+          width: 255px;
           transition: all 0.4s ease 0s;
         }
         header{
@@ -117,6 +117,9 @@
       }
       .bs-callout-link h2{
         color: #67c295;
+      }
+      .bs-callout-link a{
+        text-decoration: none;
       }
 
       .bs-callout-chat {
@@ -160,22 +163,17 @@
         margin:2px;
       }
 
-      .item-info{
+      .item-side{
         text-align: right;
+      }
+      .item-side{
+        text-decoration: none;
       }
       
     </style>
 
   </head>
   <body>
-    <header>
-      <div class="container">
-        <h1>{Title}</h1>
-        {block:Description}
-          <p>{Description}</p>
-        {/block:Description}
-      </div>    
-    </header>
 
     <div id="wrapper">
       <!--sidbar-->
@@ -186,8 +184,9 @@
           </div>
           <div class="col-sm-8">
             <h3>{Title}</h3>
-            <p>{CopyrightYears} </p>
-
+            {block:Description}
+              <p>{Description}</p>
+            {/block:Description}
           </div>
         </div>
 
@@ -198,7 +197,7 @@
           {block:Posts}
             <div class="row col-sm-12">
               <div class="col-sm-2">
-                <div class="item-info">
+                <div class="item-side">
                   {block:Date}<a href="{Permalink}">{TimeAgo}</a>{/block:Date}
 
                   <ul class="like-reblog">
@@ -207,7 +206,9 @@
                   </ul>
                   <br>
                   {block:Tags}
+                  <a href="{TagURL}">
                     <span class="tag">#{Tag}</span>
+                  </a>
                   {/block:Tags}
                 
                 </div>
@@ -225,7 +226,7 @@
 
                 {block:Photo}
                 <div class="bs-callout bs-callout-photo">
-                  {Video-500}
+                  <img src="{PhotoURL-500}">
                   {block:Caption}{Caption}{/block:Caption}
                 </div>
                 {/block:Photo}
@@ -241,7 +242,13 @@
 
                 {block:Link}
                 <div class="bs-callout bs-callout-link">
-                  <h2>{Name}</h2>
+                  <a href="{URL}" {Target}>
+                    <h2>{Name}</h2>
+                  </a>
+                  {block:Thumbnail} 
+                    <img src="{Thumbnail}">
+                  {/block:Thumbnail}
+                  
                   {block:Description}
                     {Description}
                   {/block:Description}
