@@ -19,6 +19,59 @@
       color: #333
       }
 
+      #wrapper {
+        padding-left: 250px;
+        transition: all 0.4s ease 0s;
+      }
+
+      #sidebar-wrapper {
+        margin-left: -250px;
+        left: 250px;
+        width: 250px;
+        background: #CCC;
+        position: fixed;
+        height: 100%;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: all 0.4s ease 0s;
+      }
+
+      #page-content-wrapper {
+        width: 100%;
+      }
+
+      .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (max-width:767px) {
+
+          #wrapper {
+            padding-left: 0;
+          }
+
+          #sidebar-wrapper {
+            left: 0;
+          }
+
+          #wrapper.active {
+            position: relative;
+            left: 250px;
+          }
+
+          #wrapper.active #sidebar-wrapper {
+            left: 250px;
+            width: 250px;
+            transition: all 0.4s ease 0s;
+          }
+
+      }
+
       .bs-callout {
         padding: 20px;
         border: 1px solid #eee;
@@ -70,17 +123,22 @@
       }
 
       .like-reblog {
-      list-style: none;
+        list-style: none;
       }
       .like-reblog li {
-      float: right;
+        width: 30px;
+        height: 30px;
+        float: right;
+        padding:2px;
+        border-radius: 5px;
+        border-style: groove;
       }
 
       .tag{
         color:#c7254e;
         background-color: #f9f2f4;
         border-radius: 5px;
-        margin:4px;
+        margin:2px;
       }
 
       .item-info{
@@ -94,95 +152,118 @@
       {block:Description}
         <p>{Description}</p>
       {/block:Description}
-          
-    <div class="container">
-      {block:Posts}
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="col-sm-2">
-            <div class="item-info">
-              {block:Date}<a href="{Permalink}">{TimeAgo}</a>{/block:Date}
-              <br>
-              
-              {block:Tags}
-                <span class="tag">{Tag}</span>
-              {/block:Tags}  
-              
-            </div>
-          </div>
 
-          <div class="col-sm-10">
-            {block:Text}
-            <div class="bs-callout bs-callout-text">
-              {block:Title}
-                <h2>{Title}</h2>
-              {block:Title}
-              {Body}
-            </div>
-            {/block:Text}
+    <div id="wrapper">
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand"><a href="#">Home</a></li>
+              <li><a href="#">Another link</a></li>
+              <li><a href="#">Next link</a></li>
+              <li><a href="#">Last link</a></li>
+          </ul>
+      </div>
 
-            {block:Photo}
-            <div class="bs-callout bs-callout-photo">
-              {Video-500}
-              {block:Caption}{Caption}{/block:Caption}
-            </div>
-            {/block:Photo}
+      <div id="page-content-wrapper">
+        <div class="page-content">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                {block:Posts}
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <div class="col-sm-2">
+                        <div class="item-info">
+                          {block:Date}<a href="{Permalink}">{TimeAgo}</a>{/block:Date}
 
-            {block:Quote}
-            <div class="bs-callout bs-callout-quote">
-              <h2>{Quote}</h2>
-              {block:Source}
-                {Source}
-              {/block:Source}
-            </div>
-            {/block:Quote}
+                          <ul class="like-reblog">
+                            <li>{LikeButton size="20"}</li>
+                            <li>{ReblogButton size="20"}</li>
+                          </ul>
+                          <br>
+                          {block:Tags}
+                            <span class="tag">#{Tag}</span>
+                          {/block:Tags}
+                        
+                        </div>
+                      </div>
 
-            {block:Link}
-            <div class="bs-callout bs-callout-link">
-              <h2>{Name}</h2>
-              {block:Description}
-                {Description}
-              {/block:Description}
-            </div>
-            {/block:Link}
+                      <div class="col-sm-10">
+                        {block:Text}
+                        <div class="bs-callout bs-callout-text">
+                          {block:Title}
+                            <h2>{Title}</h2>
+                          {block:Title}
+                          {Body}
+                        </div>
+                        {/block:Text}
 
-            {block:Chat}
-            <div class="bs-callout bs-callout-chat">
-              {block:Title}
-                {Title}
-              {/block:Title}
-              <table>
-                {block:Lines}
-                <tr>
-                  <th>{block:Label}{Label}{/block:Label}</th>
-                  <td>{Line}</td>
-                </tr>
-                {/block:Lines}
-              </table>
-            </div>
-            {/block:Chat}
+                        {block:Photo}
+                        <div class="bs-callout bs-callout-photo">
+                          {Video-500}
+                          {block:Caption}{Caption}{/block:Caption}
+                        </div>
+                        {/block:Photo}
 
-            {block:Audio}
-            <div class="bs-callout bs-callout-audio">
-              {AudioPlayer}
-              {block:Caption}
-                {Caption}
-              {/block:Caption}
-            </div>
-            {/block:Audio}
+                        {block:Quote}
+                        <div class="bs-callout bs-callout-quote">
+                          <h2>{Quote}</h2>
+                          {block:Source}
+                            {Source}
+                          {/block:Source}
+                        </div>
+                        {/block:Quote}
 
-            {block:Video}
-            <div class="bs-callout bs-callout-video">
-              {Video-500}
-              {block:Caption}
-                {Caption}
-              {/block:Caption}
-            </div>
-            {/block:Video}
-          </div>
-        </div>
-      </div><!-- /. row -->
-      {/block:Posts}
-    </div><!-- /.container -->
+                        {block:Link}
+                        <div class="bs-callout bs-callout-link">
+                          <h2>{Name}</h2>
+                          {block:Description}
+                            {Description}
+                          {/block:Description}
+                        </div>
+                        {/block:Link}
+
+                        {block:Chat}
+                        <div class="bs-callout bs-callout-chat">
+                          {block:Title}
+                            {Title}
+                          {/block:Title}
+                          <table>
+                            {block:Lines}
+                            <tr>
+                              <th>{block:Label}{Label}{/block:Label}</th>
+                              <td>{Line}</td>
+                            </tr>
+                            {/block:Lines}
+                          </table>
+                        </div>
+                        {/block:Chat}
+
+                        {block:Audio}
+                        <div class="bs-callout bs-callout-audio">
+                          {AudioPlayer}
+                          {block:Caption}
+                            {Caption}
+                          {/block:Caption}
+                        </div>
+                        {/block:Audio}
+
+                        {block:Video}
+                        <div class="bs-callout bs-callout-video">
+                          {Video-500}
+                          {block:Caption}
+                            {Caption}
+                          {/block:Caption}
+                        </div>
+                        {/block:Video}
+                      </div>
+                    </div>
+                  </div><!-- /. row -->
+                {/block:Posts}
+              </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+          </div><!-- /.container -->
+        </div><!-- /.page-content -->
+      </div><!-- page-content-wrapper -->
+    </div><!-- wrapper -->
   </body>
 </html>
